@@ -1,14 +1,14 @@
 import { invalidRequest } from "./modules/invalidRequest";
 
 import express = require('express');
-import { flipCoins } from "./modules/flipCoins";
+import { throwDice } from "./modules/throwDice";
 import { determineWinner } from "./modules/determineWinner";
 
 const app = express();
 
 app.use(express.json());
-
-app.get('/coinflip', (req: express.Request, res: express.Response) => {
+// 3 params: dice, throws, players
+app.get('/dice', (req: express.Request, res: express.Response) => {
     let errorMessage: string | null = invalidRequest(req);
     // not null: an error exists, hence is returned
     if(errorMessage != null){
@@ -20,16 +20,13 @@ app.get('/coinflip', (req: express.Request, res: express.Response) => {
         return;
     }
 
-    // number of heads and tails, and an array of individual flips and their results (win or lose)
-    let flippedCoins = flipCoins(Number(req.query['flips']), String(req.query['side']));
-
+    let thrownDice = throwDice(Number(req.query['dice']), Number(req.query['throws']), Number(req.query['players']));
+    let winner = determineWinner(thrownDice);
     res.status(200);
     res.send({
         status: 200,
-        numOfHeads: flippedCoins.headsCount,
-        numOfTails: flippedCoins.tailsCount,
-        result: determineWinner(Number(req.query['flips']), flippedCoins.resultsContainer),
-        flips: flippedCoins,
+        winner: winner,
+        throws: thrownDice
     });
 });
 
