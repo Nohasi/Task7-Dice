@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { DiceForm } from './DiceForm';
-import { FlipsPanel } from './FlipsPanel';
 import { Header } from './Header';
 import { ResultPanel } from './ResultPanel';
+import { RollsPanel } from './RollsPanel';
 
 export const DicePage = () => {
 
@@ -18,12 +18,12 @@ export const DicePage = () => {
                         <DiceForm/>
                     </div>
                     <div className="col-md-4">
-                        {/* TODO: RESULT PANEL */}
+                        <ResultPanel/>
                     </div>
                 </div>
             </div>
             <div className="container mrgnbtm">
-                {/* TODO: TABLE */}
+                <RollsPanel/>
             </div>
         </div>
     );   
