@@ -38,3 +38,13 @@ tr.same-col-widths th {
     opacity:0;
   }
 }
+
+.btn ,.btn-primary, .btn-primary-active, .btn-primary-visited {
+  background-color: #4fb9af !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+
+.btn-primary:hover {
+  background-color: #28a99e !important;
+}

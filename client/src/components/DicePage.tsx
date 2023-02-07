@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-import { CoinflipForm } from './CoinflipForm';
+import { DiceForm } from './DiceForm';
 import { FlipsPanel } from './FlipsPanel';
 import { Header } from './Header';
 import { ResultPanel } from './ResultPanel';
 
-export const CoinflipPage = () => {
+export const DicePage = () => {
 
     // TODO: Set States
 
@@ -15,7 +15,7 @@ export const CoinflipPage = () => {
             <div className="container mrgnbtm">
                 <div className="row">
                     <div className="col-md-8">
-                        {/* TODO: FORM */}
+                        <DiceForm/>
                     </div>
                     <div className="col-md-4">
                         {/* TODO: RESULT PANEL */}

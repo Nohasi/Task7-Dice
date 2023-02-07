@@ -10,7 +10,7 @@ function App() {
         <Routes>
           {/* Routes to automatically redirect users */}
           <Route path="dice" element={<DicePage/>}/>
-          <Route path="" element={<Navigate to="/coinflip"/>}/>
+          <Route path="" element={<Navigate to="/dice"/>}/>
         </Routes>
       </BrowserRouter>
     </div>
