@@ -25,7 +25,7 @@ app.get('/dice', (req: express.Request, res: express.Response) => {
     res.status(200);
     res.send({
         status: 200,
-        winner: winner,
+        result: winner,
         throws: thrownDice
     });
 });
