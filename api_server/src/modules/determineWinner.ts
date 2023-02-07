@@ -1,23 +1,31 @@
-import coinflipResult from "../types/coinflipResult";
+import throwResult from "../types/throwResult";
 
-export const determineWinner = (flips: number, flippedCoins: coinflipResult[]): string => {
-    let winCounter = 0;
+export const determineWinner = (results: throwResult[]) => {
+    // Set to store players in case of a tie
+    let tiedPlayers = new Set<number>();
 
-    // for each win the user has, we add to the counter
-    flippedCoins.forEach((coin) => {
-        if(coin.result){
-            winCounter++;
+    // Stores the highest number value and the player who has that value
+    let winnerPlayer = 0;
+    let winnerScore = 0;
+
+    results.forEach((result) => {
+        // If new maximum value is found, clear set and update variables
+        if(result.score > winnerScore){
+            tiedPlayers.clear();
+            winnerPlayer = result.player;
+            winnerScore = result.score;
         }
-    })
+        // if multiple players have the highest value, add them to the set
+        else if(result.score === winnerScore){
+            tiedPlayers.add(winnerPlayer);
+            tiedPlayers.add(result.player);
+        }
+    });
 
-    // if player wins over half of flips, they win the game.
-    let winThreshold = flips / 2;
-    if(winCounter > (winThreshold)){
-        return 'win';
+    // If the set is empty, we have one winner
+    if(tiedPlayers.size === 0){
+        return {result: 'win', winner: winnerPlayer, score: winnerScore};
     }
-    if(winCounter < (winThreshold)){
-        return 'lose';
-    }
-    // If win=lose, it's a draw (can only occur with even # of flips)
-    return 'draw';
+    // Else we have a tie, and we output all tied players instead
+    return {result: 'tie', tiedPlayers: Array.from(tiedPlayers), score: winnerScore};
 }

@@ -1,48 +1,75 @@
 import { Request } from "express"
 export const invalidRequest = (req: Request): string | null => {
-
-    // Checking for parameter existence
-    if(!('flips' in req.query)){
-        return 'The \'flips\' parameter is not passed';
+    // Checking if parameter exists
+    if(!('dice' in req.query)){
+        return "The 'dice' parameter is not passed."
     }
-    if(!('side' in req.query)){
-        return 'The \'side\' parameter is not passed';
+    if(!('throws' in req.query)){
+        return "The 'throws' parameter is not passed."
     }
-
-    //Checking for empty params
-    if(req.query.flips === ""){
-        return 'No value was passed for Number of Flips';
-    }
-    if(req.query.side === ""){
-        return 'The \'side\' parameter is empty';
+    if(!('players' in req.query)){
+        return "The 'players' parameter is not passed."
     }
 
-    const flipNo = Number(req.query['flips']);
-
-    // Checking if flips is not a number
-    if(isNaN(flipNo)){
-        return '\'flips\' should be passed as a number';
+    // Checking if passed parameter is empty
+    if(req.query['dice'] === ""){
+        return "No value was passed for 'dice'"
+    }
+    if(req.query['throws'] === ""){
+        return "No value was passed for 'throws'"
+    }
+    if(req.query['players'] === ""){
+        return "No value was passed for 'players'"
     }
 
-    // Checking if flips is a negative or zero
-    if(flipNo <= 0){
-        return 'Number of flips cannot be zero or a negative number';
+    const diceNo = Number(req.query['dice']);
+    const throwNo = Number(req.query['throws']);
+    const playerNo = Number(req.query['players']);
+
+    // Checking if passed params are not numbers
+    if(isNaN(diceNo)){
+        return "'dice' value should be a number";
+    }
+    if(isNaN(throwNo)){
+        return "'throw' value should be a number";
+    }
+    if(isNaN(playerNo)){
+        return "'players' value should be a number";
     }
 
-    // Making sure number of flips is an whole number
-    if(!Number.isInteger(flipNo)){
-        return 'Number of flips must be an integer';
+    // Checking for low values
+    if(diceNo <= 0){
+        return "Number of dice cannot be zero or a negative number";
+    }
+    if(throwNo <= 0){
+        return "Number of throws cannot be zero or a negative number";
+    }
+    if(playerNo < 2){
+        return "Must have at least two players";
     }
 
-    // Added a maximum value of 100 to num of flips
-    if(flipNo > 100){
-        return 'Number of flips must not be larger than 100';
+    // Checking for floating point numbers
+    if(!Number.isInteger(diceNo)){
+        return "Number of dice must be an integer";
+    }
+    if(!Number.isInteger(throwNo)){
+        return "Number of throws must be an integer";
+    }
+    if(!Number.isInteger(playerNo)){
+        return "Number of players must be an integer";
     }
 
-    // Checking if 'side' is neither heads/head nor tails/tail
-    if(req.query['side'] !== 'heads' && req.query['side'] !== 'tails'){
-        return '\'side\' should be either \'heads\' or \'tails\'';
+    // Adding max value for params
+    if(diceNo > 5){
+        return "Number of dice must not be larger than 5";
     }
+    if(throwNo > 10){
+        return "Number of throws must not be larger than 10";
+    }
+    if(playerNo > 10){
+        return "Number of players must not be larger than 10";
+    }
+
 
     return null;
 }
