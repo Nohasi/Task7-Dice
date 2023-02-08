@@ -6,8 +6,21 @@ import { ResultPanel } from './ResultPanel';
 import { RollsPanel } from './RollsPanel';
 
 export const DicePage = () => {
+    // Input states
+    let [dice, setDice] = useState(1);
+    let [throws, setThrows] = useState(1);
+    let [players, setPlayers] = useState(2);
 
-    // TODO: Set States
+    //OutputStates
+    let [result, setResult] = useState('win');
+    let [winner, setWinner] = useState(0);
+    let [tiedPlayers, setTiedPlayers] = useState([]);
+    let [scoreboard, setScoreboard] = useState([]);
+
+    // Page/erorr handling states
+    let [pageInteraction, setPageInteraction] = useState(false);
+    let [errorStatus, setErrorStatus] = useState(false);
+    let [errorMessage, setErrorMessage] = useState('');
 
     return(
         <div className="App">
@@ -15,7 +28,17 @@ export const DicePage = () => {
             <div className="container mrgnbtm">
                 <div className="row">
                     <div className="col-md-8">
-                        <DiceForm/>
+                        <DiceForm
+                            dice={dice}
+                            throws={throws}
+                            players={players}
+                            setDice={setDice}
+                            setThrows={setThrows}
+                            setPlayers={setPlayers}
+                            setPageInteraction={setPageInteraction}
+                            setErrorStatus={setErrorStatus}
+                            setErrorMessage={setErrorMessage}
+                        />
                     </div>
                     <div className="col-md-4">
                         <ResultPanel/>
