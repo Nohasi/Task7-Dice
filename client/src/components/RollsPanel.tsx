@@ -1,15 +1,15 @@
 import React from "react";
-import flipsPanelTypes from "../prop_types/flipsPanelTypes";
 import { ErrorMessage } from "./ErrorMessage";
 import { RollsTable } from "./RollsTable";
+import rollsPanelTypes from "../prop_types/rollsPanelTypes";
 
-export const RollsPanel = () => {
+export const RollsPanel = (props: rollsPanelTypes) => {
     return(
         <div className="container">
-            { false 
+            { props.errorStatus
             // If errorStatus is true, calls ErrorMessage component instead of building table
-              ? <ErrorMessage errorMessage={"props.errorMessage"} />
-              : <RollsTable/>
+              ? <ErrorMessage errorMessage={props.errorMessage} />
+              : <RollsTable scoreboard={props.scoreboard}/>
             }
         </div>
     );

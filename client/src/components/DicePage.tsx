@@ -61,7 +61,14 @@ export const DicePage = () => {
                 </div>
             </div>
             <div className="container mrgnbtm">
-                <RollsPanel/>
+                { pageInteraction
+                    ? <RollsPanel
+                        errorMessage={errorMessage}
+                        errorStatus={errorStatus}
+                        scoreboard={scoreboard}
+                    />
+                    : <div/>
+                }
             </div>
         </div>
     );   

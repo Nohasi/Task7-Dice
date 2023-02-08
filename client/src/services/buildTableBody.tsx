@@ -1,13 +1,11 @@
-import roundTypes from "../prop_types/roundTypes"
+import throwResult from "../prop_types/throwResult"
 
-export const buildTableBody = (rounds: roundTypes[]) => {
-    return rounds.map((val, key) => {
+export const buildTableBody = (scoreboard: throwResult[]) => {
+    return scoreboard.map((val, key) => {
         return(
             <tr key={key}>
-                <td>{key+1}</td>
-                <td>{val.target}</td>
-                <td>{val.sideFlipped}</td>
-                <td>{val.result?'Win':'Lose'}</td>
+                <td>{val.player}</td>
+                <td>{val.score}</td>
             </tr>
         )
     })
