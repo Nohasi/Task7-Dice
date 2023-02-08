@@ -22,6 +22,15 @@ export const DiceForm = (props: formTypes) => {
                 const response = await getDiceResults(props.dice, props.throws, props.players);
                 // if valid, sets output states and makes errorStatus false
                 if(response.status === 200){
+                    props.setResult(response.result.result);
+                    if(response.result.result === 'win'){
+                        props.setWinner(response.result.winner);
+                    }
+                    else if(response.result.result === 'tie'){
+                        props.setTiedPlayers(response.result.tiedPlayers);
+                    }
+                    props.setScore(response.result.score);
+                    props.setScoreboard(response.throws);
 
                     props.setPageInteraction(true);
                     props.setErrorStatus(false);

@@ -14,6 +14,7 @@ export const DicePage = () => {
     //OutputStates
     let [result, setResult] = useState('win');
     let [winner, setWinner] = useState(0);
+    let [score, setScore] = useState(0);
     let [tiedPlayers, setTiedPlayers] = useState([]);
     let [scoreboard, setScoreboard] = useState([]);
 
@@ -38,6 +39,11 @@ export const DicePage = () => {
                             setPageInteraction={setPageInteraction}
                             setErrorStatus={setErrorStatus}
                             setErrorMessage={setErrorMessage}
+                            setResult={setResult}
+                            setWinner={setWinner}
+                            setTiedPlayers={setTiedPlayers}
+                            setScoreboard={setScoreboard}
+                            setScore={setScore}
                         />
                     </div>
                     <div className="col-md-4">
