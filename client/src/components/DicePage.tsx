@@ -47,7 +47,16 @@ export const DicePage = () => {
                         />
                     </div>
                     <div className="col-md-4">
-                        <ResultPanel/>
+                        { pageInteraction
+                            ? <ResultPanel
+                                errorStatus={errorStatus}
+                                result={result}
+                                winner={winner}
+                                tiedPlayers={tiedPlayers}
+                                score={score}
+                            />
+                            :<div/>
+                        }
                     </div>
                 </div>
             </div>

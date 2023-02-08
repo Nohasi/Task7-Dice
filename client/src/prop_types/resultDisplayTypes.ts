@@ -1,5 +1,4 @@
-export default interface resultPanelTypes {
-    errorStatus: boolean,
+export default interface resultDisplayTypes{
     result: string,
     winner: number,
     tiedPlayers: Array<number>,
