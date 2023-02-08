@@ -7,13 +7,17 @@ export const ResultDisplay = (props: resultDisplayTypes) => {
     // Title of result display changes based on a win or a tie
     let resultTitle = win?"Winner:":"Tied Players:";
     let outputString = '';
+
+    // In case of a win, we display the winner's player number
     if(win){
         outputString = `Player ${props.winner}`;
     }
-    else {
+    // else we list all the tied players
+    else { 
         props.tiedPlayers.forEach((player) => {
             outputString += `${player}, `;
         });
+        // to remove the excess comma and space that will be at the end
         outputString = outputString.slice(0, -2);
     }
 

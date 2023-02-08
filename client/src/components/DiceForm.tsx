@@ -4,44 +4,45 @@ import { getDiceResults } from "../services/getDiceResults";
 
 export const DiceForm = (props: formTypes) => {
 
+    // Handlers for the dropdowns
     const handleDiceSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
         props.setDice(Number(event.target.value));
     }
-
     const handleThrowsSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
         props.setThrows(Number(event.target.value));
     }
-
     const handlePlayersSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
         props.setPlayers(Number(event.target.value));
     }
 
     const handleSubmit = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
-                // Calls fetch service
-                const response = await getDiceResults(props.dice, props.throws, props.players);
-                // if valid, sets output states and makes errorStatus false
-                if(response.status === 200){
-                    props.setResult(response.result.result);
-                    if(response.result.result === 'win'){
-                        props.setWinner(response.result.winner);
-                    }
-                    else if(response.result.result === 'tie'){
-                        props.setTiedPlayers(response.result.tiedPlayers);
-                    }
-                    props.setScore(response.result.score);
-                    props.setScoreboard(response.throws);
+        // Calls fetch service
+        const response = await getDiceResults(props.dice, props.throws, props.players);
+        // if valid, sets output states and makes errorStatus false
+        if(response.status === 200){
+            props.setResult(response.result.result);
+            // If we have a single winner, we set the winner state
+            if(response.result.result === 'win'){
+                props.setWinner(response.result.winner);
+            }
+            // Else we have multiple and set the tied players state
+            else if(response.result.result === 'tie'){
+                props.setTiedPlayers(response.result.tiedPlayers);
+            }
+            props.setScore(response.result.score);
+            props.setScoreboard(response.throws);
 
-                    props.setPageInteraction(true);
-                    props.setErrorStatus(false);
-                    props.setErrorMessage('');
-                }
-                else { // if invalid, sets errorMessage and makes errorStatus true
-                    props.setPageInteraction(true);
-                    props.setErrorStatus(true);
-                    props.setErrorMessage(response.error);
-                    console.log(`Error: ${response.error}`);
-                }
+            props.setPageInteraction(true);
+            props.setErrorStatus(false);
+            props.setErrorMessage('');
+        }
+        else { // if invalid, sets errorMessage and makes errorStatus true
+            props.setPageInteraction(true);
+            props.setErrorStatus(true);
+            props.setErrorMessage(response.error);
+            console.log(`Error: ${response.error}`);
+        }
     }
 
     return (
