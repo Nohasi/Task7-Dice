@@ -1,5 +1,7 @@
 export default interface resultPanelTypes {
-    resultSide: string,
+    errorStatus: boolean,
     result: string,
-    errorStatus: boolean
+    winner: number,
+    tiedPlayers: Array<number>,
+    score: number
 }

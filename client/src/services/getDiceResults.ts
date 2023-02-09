@@ -1,6 +1,6 @@
-export const getCoinflipResult = async (flips:string, side:string) => {
+export const getDiceResults = async (dice: number, throws: number, players: number) => {
     try{
-        const response = await fetch(`coinflip?flips=${flips}&side=${side}`, {
+        const response = await fetch(`dice?dice=${dice}&throws=${throws}&players=${players}`, {
             method: 'GET',
             mode: 'cors',
             headers: {'Accept': 'application/json'}
