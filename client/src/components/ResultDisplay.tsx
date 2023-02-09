@@ -11,6 +11,7 @@ export const ResultDisplay = (props: resultDisplayTypes) => {
     // In case of a win, we display the winner's player number
     if(win){
         outputString = `Player ${props.winner}`;
+        props.setColor("#50C878");
     }
     // else we list all the tied players
     else { 
@@ -19,6 +20,7 @@ export const ResultDisplay = (props: resultDisplayTypes) => {
         });
         // to remove the excess comma and space that will be at the end
         outputString = outputString.slice(0, -2);
+        props.setColor("#C9CC3F");
     }
 
     return(

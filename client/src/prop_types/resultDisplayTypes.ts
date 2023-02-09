@@ -3,4 +3,5 @@ export default interface resultDisplayTypes{
     winner: number,
     tiedPlayers: Array<number>,
     score: number
+    setColor: React.Dispatch<React.SetStateAction<string>>
 }
