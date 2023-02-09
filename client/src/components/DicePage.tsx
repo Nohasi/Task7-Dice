@@ -6,10 +6,6 @@ import { ResultPanel } from './ResultPanel';
 import { RollsPanel } from './RollsPanel';
 
 export const DicePage = () => {
-    // Input states
-    let [dice, setDice] = useState(1);
-    let [throws, setThrows] = useState(1);
-    let [players, setPlayers] = useState(2);
 
     //OutputStates
     let [result, setResult] = useState('win');
@@ -30,12 +26,6 @@ export const DicePage = () => {
                 <div className="row">
                     <div className="col-md-8">
                         <DiceForm
-                            dice={dice}
-                            throws={throws}
-                            players={players}
-                            setDice={setDice}
-                            setThrows={setThrows}
-                            setPlayers={setPlayers}
                             setPageInteraction={setPageInteraction}
                             setErrorStatus={setErrorStatus}
                             setErrorMessage={setErrorMessage}

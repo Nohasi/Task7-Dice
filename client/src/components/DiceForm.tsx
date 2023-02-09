@@ -4,21 +4,26 @@ import { getDiceResults } from "../services/getDiceResults";
 
 export const DiceForm = (props: formTypes) => {
 
+    // Input states
+    let [dice, setDice] = useState(1);
+    let [throws, setThrows] = useState(1);
+    let [players, setPlayers] = useState(2);
+
     // Handlers for the dropdowns
     const handleDiceSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        props.setDice(Number(event.target.value));
+        setDice(Number(event.target.value));
     }
     const handleThrowsSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        props.setThrows(Number(event.target.value));
+        setThrows(Number(event.target.value));
     }
     const handlePlayersSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        props.setPlayers(Number(event.target.value));
+        setPlayers(Number(event.target.value));
     }
 
     const handleSubmit = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         // Calls fetch service
-        const response = await getDiceResults(props.dice, props.throws, props.players);
+        const response = await getDiceResults(dice, throws, players);
         // if valid, sets output states and makes errorStatus false
         if(response.status === 200){
             props.setResult(response.result.result);
@@ -56,7 +61,7 @@ export const DiceForm = (props: formTypes) => {
                                 <label>
                                     Dice
                                     &nbsp;
-                                    <select value={props.dice} onChange={handleDiceSelect}>
+                                    <select value={dice} onChange={handleDiceSelect}>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -69,7 +74,7 @@ export const DiceForm = (props: formTypes) => {
                                 <label>
                                     Throws
                                     &nbsp;
-                                    <select value={props.throws} onChange={handleThrowsSelect}>
+                                    <select value={throws} onChange={handleThrowsSelect}>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -87,7 +92,7 @@ export const DiceForm = (props: formTypes) => {
                                 <label>
                                     Players
                                     &nbsp;
-                                    <select value={props.players} onChange={handlePlayersSelect}>
+                                    <select value={players} onChange={handlePlayersSelect}>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
