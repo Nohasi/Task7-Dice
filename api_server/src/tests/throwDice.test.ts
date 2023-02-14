@@ -7,7 +7,7 @@ describe('Passing values correctly', () => {
         const throws = 10;
         const dice = 5;
         
-        const result = throwDice(players, throws, dice);
+        const result = throwDice(dice, throws, players);
         expect(result[0].score).toEqual(300);
         expect(result[1].score).toEqual(300);
         expect(result[2].score).toEqual(300);
@@ -19,7 +19,7 @@ describe('Passing values correctly', () => {
         const throws = 10;
         const dice = 5;
         
-        const result = throwDice(players, throws, dice);
+        const result = throwDice(dice, throws, players);
         expect(result[0].score).toEqual(50);
         expect(result[1].score).toEqual(50);
         expect(result[2].score).toEqual(50);
