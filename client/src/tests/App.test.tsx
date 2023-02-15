@@ -28,9 +28,3 @@ describe('Form rendering',() => {
         expect(screen.getByText('Play!')).toBeInTheDocument();
     });
 });
-
-describe('Updating states', () => {
-    it('Should update pageInteraction state properly', () => {
-        
-    });
-});
