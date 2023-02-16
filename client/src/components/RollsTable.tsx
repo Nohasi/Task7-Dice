@@ -1,5 +1,5 @@
 import React from "react";
-import throwResult from "../prop_types/throwResult";
+import throwResult from "../prop_types/diceResults";
 import { buildTableBody } from "../services/buildTableBody";
 
 export const RollsTable = ({scoreboard}: {scoreboard:throwResult[]}) => {

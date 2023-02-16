@@ -1,4 +1,4 @@
-import throwResult from "./throwResult";
+import throwResult from "./diceResults";
 
 export default interface rollsPanelTypes {
     errorStatus: boolean,

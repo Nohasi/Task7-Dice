@@ -1,3 +1,4 @@
+import diceResults from "../prop_types/diceResults";
 import { buildTableBody } from "../services/buildTableBody";
 
 test('Sending in a value normally', () => {
@@ -46,5 +47,16 @@ test('Sending in only one value', () => {
 		<td>{scoreboard[0].player}</td>
 		<td>{scoreboard[0].score}</td>
 	</tr>
+	));
+});
+
+test('Sending in an empty scoreboard', () => {
+	const scoreboard: diceResults[] = [];
+	const result = buildTableBody(scoreboard);
+	expect(String(result[0])).toBe(String(
+		<tr key={0}>
+			<td>Empty array passed</td>
+			<td>Empty array passed</td>
+		</tr>
 	));
 });
