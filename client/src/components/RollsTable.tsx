@@ -1,8 +1,8 @@
 import React from "react";
-import throwResult from "../prop_types/diceResults";
+import diceResults from "../prop_types/diceResults";
 import { buildTableBody } from "../services/buildTableBody";
 
-export const RollsTable = ({scoreboard}: {scoreboard:throwResult[]}) => {
+export const RollsTable = ({scoreboard}: {scoreboard:diceResults[]}) => {
     return (
         <div className="container">
         <table className="table table-bordered table-fixed table-sm same-col-widths" style={{textAlign:"center"}}>
