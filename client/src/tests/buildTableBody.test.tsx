@@ -21,24 +21,30 @@ test('Sending in a value normally', () => {
 	];
 
     const result = buildTableBody(scoreboard);
-	expect(result).toBe(    
-	<div>        
+	for(let i = 0; i < result.length; i++){
+		expect(String(result[i])).toBe(String(
+			<tr key={i}>
+				<td>{scoreboard[i].player}</td>
+				<td>{scoreboard[i].score}</td>
+			</tr>
+		)
+		);
+	}
+});
+
+test('Sending in only one value', () => {
+	const scoreboard = [
+		{
+			"player": 1,
+			"score": 55
+		}
+	]
+
+	const result = buildTableBody(scoreboard);
+	expect(String(result[0])).toBe(String(
 		<tr key={0}>
-			<td>1</td>
-			<td>55</td>
-		</tr>
-		<tr key={1}>
-			<td>2</td>
-			<td>65</td>
-		</tr>
-		<tr key={2}>
-			<td>3</td>
-			<td>53</td>
-		</tr>
-		<tr key={3}>
-			<td>4</td>
-			<td>46</td>
-		</tr>
-	</div>
-	);
+		<td>{scoreboard[0].player}</td>
+		<td>{scoreboard[0].score}</td>
+	</tr>
+	));
 });

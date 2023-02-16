@@ -3,7 +3,6 @@ import throwResult from "../prop_types/throwResult";
 import { buildTableBody } from "../services/buildTableBody";
 
 export const RollsTable = ({scoreboard}: {scoreboard:throwResult[]}) => {
-    
     return (
         <div className="container">
         <table className="table table-bordered table-fixed table-sm same-col-widths" style={{textAlign:"center"}}>
