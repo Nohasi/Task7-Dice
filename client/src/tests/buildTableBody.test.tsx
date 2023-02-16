@@ -42,7 +42,7 @@ test('Sending in only one value', () => {
 
 	const result = buildTableBody(scoreboard);
 	expect(String(result[0])).toBe(String(
-		<tr key={0}>
+	<tr key={0}>
 		<td>{scoreboard[0].player}</td>
 		<td>{scoreboard[0].score}</td>
 	</tr>
