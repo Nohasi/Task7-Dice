@@ -25,3 +25,7 @@ describe('Passing values correctly', () => {
         expect(result[2].score).toEqual(50);
     });
 });
+
+afterEach(() => {
+    jest.restoreAllMocks();
+});
