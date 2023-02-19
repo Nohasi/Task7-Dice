@@ -23,20 +23,20 @@ export const DiceForm = (props: formTypes) => {
     const handleSubmit = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         // Calls fetch service
-        const response = await getDiceResults(dice, throws, players);
+        const fetchedData = await getDiceResults(dice, throws, players);
         // if valid, sets output states and makes errorStatus false
-        if(response.status === 200){
-            props.setResult(response.result.result);
+        if(fetchedData.status === "OK"){
+            props.setResult(fetchedData.response.result.result);
             // If we have a single winner, we set the winner state
-            if(response.result.result === 'win'){
-                props.setWinner(response.result.winner);
+            if(fetchedData.response.result.result === 'win'){
+                props.setWinner(fetchedData.response.result.winner);
             }
             // Else we have multiple and set the tied players state
-            else if(response.result.result === 'tie'){
-                props.setTiedPlayers(response.result.tiedPlayers);
+            else if(fetchedData.response.result.result === 'tie'){
+                props.setTiedPlayers(fetchedData.response.result.tiedPlayers);
             }
-            props.setScore(response.result.score);
-            props.setScoreboard(response.throws);
+            props.setScore(fetchedData.response.result.score);
+            props.setScoreboard(fetchedData.response.throws);
 
             props.setPageInteraction(true);
             props.setErrorStatus(false);
@@ -45,8 +45,8 @@ export const DiceForm = (props: formTypes) => {
         else { // if invalid, sets errorMessage and makes errorStatus true
             props.setPageInteraction(true);
             props.setErrorStatus(true);
-            props.setErrorMessage(response.error);
-            console.log(`Error: ${response.error}`);
+            props.setErrorMessage(fetchedData.response.error);
+            console.log(`Error: ${fetchedData.response.error}`);
         }
     }
 
