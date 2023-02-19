@@ -6,10 +6,17 @@ export const getDiceResults = async (dice: number, throws: number, players: numb
             headers: {'Accept': 'application/json'}
         });
 
-        return await response.json();
+        const resJson =  await response.json();
+        if(resJson.status === 200){
+            return {status: "OK", response: resJson}
+        }
+        else {
+            return {status: "Error", response: resJson}
+        }
     }
     catch (error) {
         console.log('error: Could not connect to API server');
-        return 'error: Could not connect to API server';
+        const errorObject = {error: "Could not connect to API server"};
+        return {status: "Error", response: errorObject};
     }
 }

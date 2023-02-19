@@ -9,7 +9,9 @@ export const ResultPanel = (props: resultPanelTypes) => {
     return(
         <div style={{backgroundColor: color}} className="display-board">
             {props.errorStatus
-            ? <ErrorResult/>
+            ? <ErrorResult
+                setColor={setColor}
+              />
             : <ResultDisplay
                 result={props.result}
                 winner={props.winner}

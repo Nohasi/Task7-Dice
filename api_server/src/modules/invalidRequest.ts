@@ -31,7 +31,7 @@ export const invalidRequest = (req: Request): string | null => {
         return "'dice' value should be a number";
     }
     if(isNaN(throwNo)){
-        return "'throw' value should be a number";
+        return "'throws' value should be a number";
     }
     if(isNaN(playerNo)){
         return "'players' value should be a number";
